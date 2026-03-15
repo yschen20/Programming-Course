@@ -1,0 +1,72 @@
+{
+  "capture": {
+    "interface": "eth0",
+    "filter": "",
+    "packet_count": 0,
+    "timeout": 100,
+    "buffer_size": 4096,
+    "promiscuous": true
+  },
+  "detection": {
+    "anomaly_threshold": 0.7,
+    "attack_type_confidence": {
+      "DDoS攻击": 0.8,
+      "端口扫描": 0.7,
+      "SQL注入": 0.8,
+      "暴力破解": 0.8,
+      "XSS攻击": 0.7,
+      "命令注入": 0.8,
+      "ARP欺骗": 0.7
+    },
+    "enable_ml": true,
+    "enable_rule_based": true,
+    "batch_size": 50,
+    "detection_interval": 0.5
+  },
+  "defense": {
+    "enabled": true,
+    "auto_block": true,
+    "block_duration": 3600,
+    "confidence_threshold": 0.7,
+    "rate_limit_threshold": 100,
+    "ip_whitelist": [],
+    "attack_type_block": {
+      "ARP欺骗": true,
+      "DDoS攻击": true,
+      "SQL注入": true,
+      "XSS攻击": false,
+      "命令注入": true,
+      "暴力破解": true,
+      "端口扫描": true
+    },
+    "threshold_pps": 500
+  },
+  "database": {
+    "path": "backend/data/security.db",
+    "backup_enabled": true,
+    "backup_interval": 86400,
+    "retention_days": 30,
+    "max_size_mb": 1000
+  },
+  "api": {
+    "host": "0.0.0.0",
+    "port": 5000,
+    "debug": false,
+    "rate_limit": 100,
+    "cors_origins": [
+      "http://localhost:3000",
+      "http://127.0.0.1:3000"
+    ]
+  },
+  "logging": {
+    "level": "INFO",
+    "max_size_mb": 10,
+    "backup_count": 5,
+    "log_path": "backend/data"
+  },
+  "ai": {
+    "enabled": true,
+    "model_path": "backend/data/anomaly_model.json",
+    "confidence_threshold": 0.7
+  }
+}
